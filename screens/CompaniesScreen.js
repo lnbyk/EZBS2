@@ -3,6 +3,10 @@ import {View, StyleSheet} from 'react-native'
 
 const CompaniesScreen = props => {
     return <View> 
-        
+
     </View>
 }
+
+const styles = StyleSheet.create({});
+
+export default CompaniesScreen;
