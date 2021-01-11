@@ -1,8 +1,10 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 
-const MealsNavigator = createStackNavigator({
+import HomeScreen from '../screens/HomeScreen';
 
+const MealsNavigator = createStackNavigator({
+    Home: HomeScreen
 });
 
 export default createAppContainer(MealsNavigator);
