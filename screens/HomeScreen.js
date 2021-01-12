@@ -9,22 +9,23 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import TextNav from "../components/TextNav";
 const HomeScreen = (props) => {
   const toLoginPage = () => {
-    props.navigation.nagivate({ routeName: "Login" });
+    props.navigation.replace({ routeName: "Login" });
   };
   const toSignupPage = () => {
-    props.navigation.nagivate({ routeName: "SignUp" });
+    props.navigation.navigate({ routeName: "SignUp" });
   };
   const forgetPassword = () => {
-    props.navigation.nagivate({ routeName: "forgetPassword" });
+    props.navigation.navigate({ routeName: "forgetPassword" });
   };
 
   return (
     <View style={styles.screen}>
       <ImageBackground
         style={styles.imgBg}
-        source={require("../assets/account_initial_background.png")}
+        source={require("../assets/initial_background.png")}
       >
         <View style={{ ...styles.row, ...styles.logoContainer }}>
           <View>
@@ -56,12 +57,10 @@ const HomeScreen = (props) => {
               </Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={forgetPassword}>
-            <View style={styles.forgetAccount}>
-              <Text>Forget your Account?</Text>
-              <Text>Click here</Text>
-            </View>
-          </TouchableOpacity>
+          <TextNav onPress={forgetPassword}>
+            <Text>Forget your Account?</Text>
+            <Text>Click here</Text>
+          </TextNav>
         </View>
       </ImageBackground>
     </View>
@@ -98,6 +97,7 @@ const styles = StyleSheet.create({
   },
   entryContainer: {
     justifyContent: "space-evenly",
+    paddingBottom: Dimensions.get("window").height * 0.05,
   },
 });
 
