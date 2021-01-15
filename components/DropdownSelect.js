@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import {
   View,
@@ -16,15 +16,14 @@ import names from "../constants/names";
 const lists = [1, 2, 3, 4, 5, 6];
 
 /*
-
-
-
-
-
-
+props
+  options - used to render select options
+  placeholder - used to render default select
+  onPress - used to select value
 
 */
 const DropdownSelect = (props) => {
+  console.log(props.navigation);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -47,8 +46,14 @@ const DropdownSelect = (props) => {
     );
   };
 
+  const { onInputChange, id } = props;
+
+  useEffect(() => {
+    onInputChange(id, selectedValue, true);
+  }, [id, selectedValue, onInputChange]);
+
   return (
-    <View style={styles.screen}>
+    <View style={{ marginVertical: 20 }}>
       <View style={styles.inputBox}>
         <View style={{ flex: 1, alignItems: "center" }}>
           <Text style={styles.text}>
@@ -69,25 +74,11 @@ const DropdownSelect = (props) => {
           />
         </View>
       ) : null}
-
-      <View style={styles.row}>
-        <InputHintText>Please enter zipcode</InputHintText>
-        <InputBox placeholder="XXXXXXXXX"></InputBox>
-      </View>
-      <View style={styles.row}>
-        <InputHintText>Please enter your company name</InputHintText>
-        <InputBox placeholder="XXXXXXXXX"></InputBox>
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: "center",
-    paddingVertical: Dimensions.get("window").height * 0.2,
-  },
   inputBox: {
     flexDirection: "row",
     height: 50,
@@ -112,10 +103,6 @@ const styles = StyleSheet.create({
   },
   dropDownContainer: {
     maxHeight: 155,
-  },
-  row: {
-    marginVertical: 20,
-    alignItems: "center",
   },
 });
 
