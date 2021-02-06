@@ -10,7 +10,7 @@ import {
 import InputHintText from "../components/InputHintText";
 import InputBox from "../components/InputBox";
 import TextNav from "../components/TextNav";
-import Colors from "../constants/Colors";
+import Colors from "../constants/colors";
 
 const SignUpScreen = (props) => {
   const [email, setEmail] = useState("");
